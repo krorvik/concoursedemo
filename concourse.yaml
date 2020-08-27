@@ -1,0 +1,22 @@
+---
+secrets:
+  create: true
+  localUsers: "concourse:concourse"
+concourse:
+  worker:
+    enabled: true
+    replicas: 2
+    baggageclaim:
+      driver: overlay
+  web:
+    ingress:
+      enabled: true
+      hosts:
+        - concourse.microk8s.local
+    kubernetes:
+      keepNamespaces: false
+    clusterName: redpill
+    externalUrl: https://concourse.microk8s.local
+    auth:
+      mainTeam:
+        localUser: "concourse"
